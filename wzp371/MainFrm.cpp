@@ -20,8 +20,6 @@ IMPLEMENT_DYNCREATE(CMainFrame, CFrameWnd)
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	//{{AFX_MSG_MAP(CMainFrame)
 	ON_WM_CREATE()
-	ON_COMMAND(ID_Grey, OnGrey)
-	ON_UPDATE_COMMAND_UI(ID_Grey, OnUpdateGrey)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -104,17 +102,3 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame message handlers
-
-void Grey();
-void CMainFrame::OnGrey() 
-{
-	// TODO: Add your command handler code here
-	Grey;
-	Invalidate();
-}
-
-void CMainFrame::OnUpdateGrey(CCmdUI* pCmdUI) 
-{
-	// TODO: Add your command update UI handler code here
-	
-}

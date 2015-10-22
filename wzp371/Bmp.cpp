@@ -56,45 +56,57 @@ BOOL LoadBmpFile (char* BmpFileName)
 
 	return FALSE;
 }
-void Gray()
+
+
+bool flag = TRUE;
+void Grey()
 {
-	int w = lpBitsInfo->bmiHeader.biWidth;
-	int h = lpBitsInfo->bmiHeader.biHeight;
-	int LineBytes = (w * lpBitsInfo->bmiHeader.biBitCount + 31)/32 * 4;
-	BYTE* lpBits = (BYTE*)&lpBitsInfo->bmiColors[lpBitsInfo->bmiHeader.biClrUsed];
-	//新图像内存大小
-	int new_LineBytes =(w * 8 + 31)/32 * 4;
-	LONG size = 40 + 1024 + new_LineBytes * h;
-	LPBITMAPINFO new_lpBitsInfo = (LPBITMAPINFO) malloc(size);
-	//填写文件信息头
-	memcpy(new_lpBitsInfo, lpBitsInfo, 40);
-	new_lpBitsInfo->bmiHeader.biBitCount = 8;
-	new_lpBitsInfo->bmiHeader.biClrUsed = 256;
-	//调色板
-	int i,j;
-	for (i = 0; i < 256; i ++)
-	{
-		new_lpBitsInfo->bmiColors[i].rgbBlue = i;
-		new_lpBitsInfo->bmiColors[i].rgbGreen = i;
-		new_lpBitsInfo->bmiColors[i].rgbRed = i;
-		new_lpBitsInfo->bmiColors[i].rgbReserved = 0; 
-	}
-	//位图数据
-	BYTE* pixel;
-	BYTE *R,*G,*B;
-	BYTE* new_lpBits = (BYTE*)&new_lpBitsInfo->bmiColors[new_lpBitsInfo->bmiHeader.biClrUsed];
-	for (i = 0; i < h; i ++)
-	{
-		for (j = 0; j < w; j++)
-		{
-			B = lpBits + LineBytes * i + j * 3; 
-			G = B + 1;
-			R = G + 1;
-			pixel = new_lpBits + new_LineBytes * i + j;
-			*pixel = (BYTE)((*R + *G + *B)/3);
-		}
-	}
-	free(lpBitsInfo);
-	lpBitsInfo = new_lpBitsInfo;
 	
+	if(flag)
+	{
+		int w = lpBitsInfo->bmiHeader.biWidth;
+		int h = lpBitsInfo->bmiHeader.biHeight;
+		int LineBytes = (w * lpBitsInfo->bmiHeader.biBitCount + 31)/32 * 4;
+		BYTE* lpBits = (BYTE*)&lpBitsInfo->bmiColors[lpBitsInfo->bmiHeader.biClrUsed];
+		//新图像内存大小
+		int new_LineBytes =(w * 8 + 31)/32 * 4;
+		LONG size = 40 + 1024 + new_LineBytes * h;
+		LPBITMAPINFO new_lpBitsInfo = (LPBITMAPINFO) malloc(size);
+		//填写文件信息头
+		memcpy(new_lpBitsInfo, lpBitsInfo, 40);
+		new_lpBitsInfo->bmiHeader.biBitCount = 8;
+		new_lpBitsInfo->bmiHeader.biClrUsed = 256;
+		//调色板
+		int i,j;
+		for (i = 0; i < 256; i ++)
+		{
+			new_lpBitsInfo->bmiColors[i].rgbBlue = i;
+			new_lpBitsInfo->bmiColors[i].rgbGreen = i;
+			new_lpBitsInfo->bmiColors[i].rgbRed = i;
+			new_lpBitsInfo->bmiColors[i].rgbReserved = 0; 
+		}
+		//位图数据
+		BYTE* pixel;
+		BYTE *R,*G,*B;
+		BYTE* new_lpBits = (BYTE*)&new_lpBitsInfo->bmiColors[new_lpBitsInfo->bmiHeader.biClrUsed];
+		for (i = 0; i < h; i ++)
+		{
+			for (j = 0; j < w; j++)
+			{
+				B = lpBits + LineBytes * i + j * 3; 
+				G = B + 1;
+				R = G + 1;
+				pixel = new_lpBits + new_LineBytes * i + j;
+				*pixel = (BYTE)((*R + *G + *B)/3);
+			}
+		}
+		free(lpBitsInfo);
+		lpBitsInfo = new_lpBitsInfo;
+		flag = FALSE;
+	}
+	else
+	{
+		AfxMessageBox("只能使用一次");
+	}
+
 }

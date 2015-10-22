@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CMainFrame
+LastClass=CWzp371View
 LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "wzp371.h"
@@ -39,7 +39,9 @@ Type=0
 HeaderFile=wzp371View.h
 ImplementationFile=wzp371View.cpp
 Filter=C
-LastObject=CWzp371View
+LastObject=ID_Grey
+BaseClass=CScrollView
+VirtualFilter=VWC
 
 
 [CLS:CMainFrame]
@@ -47,7 +49,7 @@ Type=0
 HeaderFile=MainFrm.h
 ImplementationFile=MainFrm.cpp
 Filter=T
-LastObject=ID_Grey
+LastObject=CMainFrame
 BaseClass=CFrameWnd
 VirtualFilter=fWC
 

@@ -20,8 +20,8 @@ IMPLEMENT_DYNCREATE(CWzp371View, CScrollView)
 
 BEGIN_MESSAGE_MAP(CWzp371View, CScrollView)
 	//{{AFX_MSG_MAP(CWzp371View)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-		//    DO NOT EDIT what you see in these blocks of generated code!
+	ON_COMMAND(ID_Grey, OnGrey)
+	ON_UPDATE_COMMAND_UI(ID_Grey, OnUpdateGrey)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CScrollView::OnFilePrint)
@@ -121,3 +121,17 @@ CWzp371Doc* CWzp371View::GetDocument() // non-debug version is inline
 
 /////////////////////////////////////////////////////////////////////////////
 // CWzp371View message handlers
+void Grey();
+void CWzp371View::OnGrey() 
+{
+	// TODO: Add your command handler code here
+	
+	Grey();
+	Invalidate();
+}
+
+void CWzp371View::OnUpdateGrey(CCmdUI* pCmdUI) 
+{
+	// TODO: Add your command update UI handler code here
+	
+}

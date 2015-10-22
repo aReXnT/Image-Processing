@@ -82,6 +82,7 @@ void CWzp371Doc::Dump(CDumpContext& dc) const
 
 /////////////////////////////////////////////////////////////////////////////
 // CWzp371Doc commands
+extern bool flag;
 BOOL LoadBmpFile (char*);
 BOOL CWzp371Doc::OnOpenDocument(LPCTSTR lpszPathName) 
 {
@@ -90,5 +91,6 @@ BOOL CWzp371Doc::OnOpenDocument(LPCTSTR lpszPathName)
 	
 	// TODO: Add your specialized creation code here
 	LoadBmpFile((char*) lpszPathName);
+	flag = TRUE;
 	return TRUE;
 }
